@@ -1,0 +1,16 @@
+.back-link {
+    display: inline-block; /* Para que el padding funcione correctamente */
+    margin-top: 20px; /* Espaciado superior */
+    padding: 10px 15px; /* Padding interno */
+    background-color: #3B82F6; /* Color de fondo */
+    color: #FFFFFF; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+    margin-left: 20px;
+}
+
+.back-link:hover {
+    background-color: #374151; /* Color de fondo al pasar el cursor */
+}
+

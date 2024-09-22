@@ -1,71 +1,64 @@
-import './index.css';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Pokedex from "pokedex-promise-v2";
-import { useNavigate } from 'react-router-dom';
 
-import HpIcon from '../../assets/HP.svg';
-import CpIcon from '../../assets/CP.svg';
-import WIcon from '../../assets/W.svg';
-import HIcon from '../../assets/H.svg';
+import SearchBox from "../../components/SearchBox";
+import PokemonCard from "../../components/PokemonCard";
+import Paginated from '../../components/Paginated';
+
+import './index.css';
 
 const interval = {
-  limit: 151,
+  limit: 50,
   offset: 0,
 };
 
+const total = 1025;
+
 const ListPokemon = () => {
     const [pokemons, setPokemons] = useState([]); 
-    const navigate = useNavigate();
-
-    const handlePokemonClick = (id) => {
-        navigate(`/detail/${id}`);
+    const [searched, setSearched] = useState([]); 
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(0);
+    
+    const handleSearch = (search) => {
+        const filtered = pokemons.filter((pokemon) => pokemon.name.includes(search));
+        setSearched(filtered);
     }
+    
+    const fetchPokemons = useCallback(async () => {
+        setLoading(true)
+        const pokedex = new Pokedex();
+        const response = await pokedex.getPokemonsList({ ...interval, offset: page * interval.limit });
+        const urls = response.results.map((pokemon) => pokemon.url);
+        const pokemonsResponse = await pokedex.getResource(urls);
+        setPokemons(pokemonsResponse); 
+        setSearched(pokemonsResponse);
+        setLoading(false)
+    }, [page, setPokemons, setSearched]);
 
     useEffect(() => {
-        const getPokemons = async () => {
-            const pokedex = new Pokedex();
-            const response = await pokedex.getPokemonsList(interval);
-            const urls = response.results.map((pokemon) => pokemon.url);
-            const pokemonsResponse = await pokedex.getResource(urls);
-            setPokemons(pokemonsResponse); 
-        };
-    
-        getPokemons();
-    }, []);
+        fetchPokemons();
+    }, [fetchPokemons]);
+
+    useEffect (() => {
+
+    }, [page])
 
     return (
-        <div className="App">
-            {pokemons.map((pokemon, index) => (
-                <div key={pokemon.id} onClick={() => handlePokemonClick(pokemon.id)}> 
-                    <div id="card">
-                        <div id="contenedor-imagen">
-                            <div id="puntos">{pokemon.id}</div>
-                            <img id="imagen" src={pokemon.sprites.front_default} alt={pokemon.name} />
-                        </div>
-                        <div id="datos">
-                            <div id="nombres">
-                                <div id="nombre">{pokemon.name}
-                                    <div id="tipo">{pokemon.types[0].type.name}</div>
-                                </div>
-                            </div>
-                            <div id="info">
-                                <div className="caja">
-                                    <img src={HpIcon} alt="HP" /> {pokemon.stats.find(stat => stat.stat.name === "hp").base_stat}
-                                </div>
-                                <div className="caja">
-                                    <img src={CpIcon} alt="CP" /> {Math.floor((pokemon.stats.find(stat => stat.stat.name === "attack").base_stat + pokemon.stats.find(stat => stat.stat.name === "defense").base_stat + pokemon.stats.find(stat => stat.stat.name === "hp").base_stat) / 3)}
-                                </div>
-                                <div className="caja">
-                                    <img src={WIcon} alt="W" /> {pokemon.weight / 10}kg
-                                </div>
-                                <div className="caja">
-                                    <img src={HIcon} alt="H" /> {pokemon.height / 10}m
-                                </div>
-                            </div>
-                        </div>
+        <div className='App'>
+            <div className="content-wrapper">
+                <SearchBox onSearch={handleSearch} />
+                {!loading && (
+                    <div className="pokemon-grid">
+                        {searched.map((pokemon, index) => (
+                            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                        ))}
                     </div>
+                )}
+                <div className="pagination-container">
+                    <Paginated page={page} total={total / interval.limit} setPage={setPage} />
                 </div>
-            ))}
+            </div>
         </div>
     );
     

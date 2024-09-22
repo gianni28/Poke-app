@@ -1,0 +1,23 @@
+.search-box {
+    width: 105%; /* Hacerlo un poco más ancho que el contenedor de las cartas */
+    max-width: calc(100% + 20px); /* Para pantallas más grandes, agregar un margen adicional */
+    height: 40px;
+    margin-bottom: 20px; /* Separación con el grid de Pokémon */
+    display: flex;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.search-box input {
+    width: 100%;
+    margin-left: 15px;
+    border: none;
+    outline: none;
+}
+
+.search-box svg {
+    margin: auto;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}

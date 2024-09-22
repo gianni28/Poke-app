@@ -1,0 +1,120 @@
+#card {
+    background-color: #4B5563;
+    width: 253px;
+    height: 381px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    cursor: pointer; /* Cambia el cursor a puntero */
+}
+
+#card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3); /* Añade sombra en hover */
+}
+
+#contenedor-imagen {
+    position: relative;
+    padding-top: 10px;
+}
+
+#imagen {
+    width: 237px;
+    height: 213px;
+    border-radius: 5px 5px 0px 0px;
+    background-color: white;
+    margin-top: 0;
+    margin-left: 8px;
+    display: block;
+}
+
+#puntos {
+    background-color: #374151;
+    width: 37px;
+    height: 36px;
+    border-radius: 30px;
+    position: absolute;
+    top: 22px;
+    left: 197px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-family: sans-serif;
+    letter-spacing: 0.5px;
+}
+
+#datos {
+    background-color: #E5E7EB;
+    width: 237px;
+    height: 135px;
+    border-radius: 0px 0px 5px 5px;
+    margin-left: 8px;
+    padding-top: 12px;
+}
+
+#nombres {
+    width: 190px;
+    height: 46px;
+    margin-left: 20px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+#nombre {
+    width: 159px;
+    height: 28px;
+    color: #1F2937;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+#tipo {
+    background-color: #374151;
+    min-width: 39px;
+    height: 24px;
+    border-radius: 14px;
+    padding: 2px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    font-weight: 700;
+    font-size: 12px;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+#info {
+    width: auto;
+    height: 52px;
+    margin-top: 15px;
+    margin-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.caja {
+    background-color: #F3F4F6;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+    padding: 3px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #374151;
+    gap: 8px;
+}
+
+.caja img {
+    height: 12px;
+    width: auto;
+}
