@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Pokedex from "pokedex-promise-v2";
 
-import SearchBox from "../../components/TEMPSearchBox";
+import SearchBox from "../../components/SearchBox";
 import PokemonCard from "../../components/PokemonCard";
 import Paginated from '../../components/Paginated';
 
