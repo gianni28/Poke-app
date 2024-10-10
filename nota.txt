@@ -1,0 +1,23 @@
+calificacion:
+
+Entrega numero 1:
+
+- creacion de pagina principal y segregacion de componentes(2.5): 2.5 OK
+- listado de pokemons de acuerdo al figma(2.5): 2.5 OK
+
+Entrega numero 2: 
+
+- Barra de busqueda por pagina(2.5): 2.5 OK
+- Componente de paginación (2.5)): 2.5 OK
+
+Entrega numero 3: 
+
+- Contexto para el uso de pokemons(1.5): 1.5 OK
+- Contexto para el uso de filtros(1): 1 OK 
+- Reducer para el manejo de acciones(1.5): 1 OK
+- Busqueda de pokemon por todo el dataSet(1): 1 OK
+
+
+nota: 5 + 5 + 5 / 3  = 5
+
+excelente trabajo!, para que te funcione mejor el filtro de busqueda recuerda que puedes aplicar un debounce o un timeoput en el input que captura el texto de busqueda
